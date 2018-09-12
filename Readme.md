@@ -1,7 +1,7 @@
 # Личный проект «YetiCave»
 
 * Студент: [Олег Сидорович](https://up.htmlacademy.ru/php/6/user/298507).
-* Наставник: `Неизвестно`.
+* Наставник: [Максим Деев](https://htmlacademy.ru/profile/id685777).
 
 ---
 
