@@ -126,15 +126,15 @@ function format_price ($price) {
             <?php foreach ($catalog as $key => $value): ?>
                 <li class="lots__item lot">
                     <div class="lot__image">
-                        <img src="<?php echo $catalog[$key]['image']; ?>" width="350" height="260" alt="<?php echo $catalog[$key]['title']; ?>">
+                        <img src="<?php echo $value['image']; ?>" width="350" height="260" alt="<?php echo $value['title']; ?>">
                     </div>
                     <div class="lot__info">
-                        <span class="lot__category"><?php echo $catalog[$key]['category']; ?></span>
-                        <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?php echo $catalog[$key]['title']; ?></a></h3>
+                        <span class="lot__category"><?php echo $value['category']; ?></span>
+                        <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?php echo $value['title']; ?></a></h3>
                         <div class="lot__state">
                             <div class="lot__rate">
                                 <span class="lot__amount">Стартовая цена</span>
-                                <span class="lot__cost"><?php echo format_price($catalog[$key]['price']); ?></span>
+                                <span class="lot__cost"><?php echo format_price($value['price']); ?></span>
                             </div>
                             <div class="lot__timer timer">
 
