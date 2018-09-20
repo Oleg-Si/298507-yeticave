@@ -31,7 +31,7 @@
                         <span class="lot__cost"><?php echo format_price(filter($value['price'])); ?></span>
                     </div>
                     <div class="lot__timer timer">
-
+                        <?php echo get_time(); ?>
                     </div>
                 </div>
             </div>
