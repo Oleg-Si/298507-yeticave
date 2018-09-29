@@ -46,3 +46,10 @@ function get_time() {
 
     return $result;
 }
+
+function get_data($connect, $query) {
+    $result = mysqli_query($connect, $query);
+    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    return $data;
+}

@@ -16,13 +16,6 @@ if ($connect == false) {
 $get_categories = 'SELECT category_name FROM categories';
 $get_catalog = 'SELECT * FROM lots';
 
-function get_data($connect, $query) {
-    $result = mysqli_query($connect, $query);
-    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-    return $data;
-}
-
 $categories = get_data($connect, $get_categories);
 $lots = get_data($connect, $get_catalog);
 
