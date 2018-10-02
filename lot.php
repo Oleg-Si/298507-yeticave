@@ -16,11 +16,19 @@ if ($connect == false) {
 if (isset($_GET['id'])) {
     $lot_id = $_GET['id'];
     $array_id = get_data($connect, 'SELECT id FROM lots');
-    if (!in_array($lot_id, $array_id)) {
-        http_response_code(404);
+
+    foreach ($array_id as $id) {
+        $simple_array_id[] = $id['id'];
     }
+
+    if (!in_array($lot_id, $simple_array_id)) {
+        header("HTTP/1.0 404 Not Found");
+        exit;
+    };
+
 } else {
-    http_response_code(404);
+    header("HTTP/1.0 404 Not Found");
+    exit;
 };
 
 $get_categories = 'SELECT category_name FROM categories';
