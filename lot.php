@@ -15,6 +15,7 @@ if ($connect == false) {
 
 if (isset($_GET['id'])) {
     $lot_id = $_GET['id'];
+    $safe_lot_id = mysqli_real_escape_string($connect, $lot_id);
     $array_id = get_data($connect, 'SELECT id FROM lots');
 
     // переводим в простой массив
@@ -33,7 +34,8 @@ if (isset($_GET['id'])) {
 };
 
 $get_categories = 'SELECT category_name FROM categories';
-$get_lot = 'SELECT * FROM lots JOIN categories ON lots.category_id = categories.id WHERE lots.id = ' . $lot_id . '';
+$get_lot = 'SELECT * FROM lots JOIN categories ON lots.category_id = categories.id WHERE lots.id = ' . $safe_lot_id . '';
+
 
 $categories = get_data($connect, $get_categories);
 $lot = get_data($connect, $get_lot);
