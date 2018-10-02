@@ -45,9 +45,8 @@
                 </div>
             </header>
 
-            <main class="container">
-                <?php echo $page_content; ?>
-            </main>
+            <?php echo $page_content; ?>
+
         </div>
 
         <footer class="main-footer">
