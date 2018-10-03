@@ -5,13 +5,7 @@ $user_name = 'Олег';
 $user_avatar = 'img/user.jpg';
 
 require_once('functions.php');
-
-$connect = mysqli_connect('localhost', 'root', '', 'yeticave');
-mysqli_set_charset($connect, 'utf8');
-
-if ($connect == false) {
-    echo 'Ошибка подключения: ' . mysqli_connect_error();
-}
+require_once('connect.php');
 
 if (isset($_GET['id'])) {
     $lot_id = $_GET['id'];

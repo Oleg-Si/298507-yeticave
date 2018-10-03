@@ -6,7 +6,7 @@
 
             <?php foreach ($categories as $category): ?>
             <li class="promo__item promo__item--boards">
-                <a class="promo__link" href="pages/all-lots.html"><?php echo $category[category_name]; ?></a>
+                <a class="promo__link" href="pages/all-lots.html"><?php echo $category['category_name']; ?></a>
             </li>
             <?php endforeach; ?>
 

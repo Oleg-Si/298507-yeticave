@@ -23,7 +23,7 @@
     </nav>
     <section class="lot-item container">
 
-       <?php foreach ($lot as $value) : ?>
+       <?php foreach ($lot as $value): ?>
 
         <h2><?php echo $value['title']; ?></h2>
         <div class="lot-item__content">
