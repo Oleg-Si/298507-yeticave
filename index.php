@@ -5,13 +5,7 @@ $user_name = 'Олег';
 $user_avatar = 'img/user.jpg';
 
 require_once('functions.php');
-
-$connect = mysqli_connect('localhost', 'root', '', 'yeticave');
-mysqli_set_charset($connect, 'utf8');
-
-if ($connect == false) {
-    echo 'Ошибка подключения: ' . mysqli_connect_error();
-}
+require_once('connect.php');
 
 $get_categories = 'SELECT category_name FROM categories';
 $get_catalog = 'SELECT * FROM lots';
