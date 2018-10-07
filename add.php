@@ -65,10 +65,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Проверяем картинку
-    if (isset($_FILES['img'])) {
+    if (strlen($_FILES['img']['name'])) {
         $file_name = $_FILES['img']['name'];
         $file_path = __DIR__ . '/img/';
         $file_url = '/img/' . $file_name;
+
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $tmp_name = $_FILES['img']['tmp_name'];
+        $file_type = finfo_file($finfo, $tmp_name);
+
+        if ($file_type !== 'image/jpeg' && $file_type !== 'image/png') {
+            $errors['img'] = 'Выберите изображение формата jpeg или png';
+        }
+    } else {
+        $errors['img'] = 'Вы не выбрали изображение';
     }
 
     if (!count($errors)) {
@@ -89,8 +99,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-
-
 
 $page_content = include_template('add.php', [
     'categories' => $categories,
