@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Проверяем на пустоту строки и число
     if (empty($_POST['lot-rate'])) {
         $errors['lot-rate'] = 'Введите начальную цену';
-    } else if (is_numeric($_POST['lot-rate'])) {
+    } else if (is_numeric($_POST['lot-rate']) && $_POST['lot-rate'] > 0) {
         $values['lot-rate'] = $_POST['lot-rate'];
     } else {
         $errors['lot-rate'] = 'Цена должна быть числом';
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Проверяем на пустоту строки и число
     if (empty($_POST['lot-step'])) {
         $errors['lot-step'] = 'Введите шаг ставки';
-    } else if (is_numeric($_POST['lot-step'])) {
+    } else if (is_numeric($_POST['lot-step']) && $_POST['lot-step'] > 0) {
         $values['lot-step'] = $_POST['lot-step'];
     } else {
         $errors['lot-step'] = 'Шаг должен быть числом';
