@@ -1,24 +1,11 @@
 <main>
     <nav class="nav">
         <ul class="nav__list container">
+            <?php foreach ($categories as $category): ?>
             <li class="nav__item">
-                <a href="all-lots.html">Доски и лыжи</a>
+                <a href="all-lots.html"><?php echo $category['category_name']; ?></a>
             </li>
-            <li class="nav__item">
-                <a href="all-lots.html">Крепления</a>
-            </li>
-            <li class="nav__item">
-                <a href="all-lots.html">Ботинки</a>
-            </li>
-            <li class="nav__item">
-                <a href="all-lots.html">Одежда</a>
-            </li>
-            <li class="nav__item">
-                <a href="all-lots.html">Инструменты</a>
-            </li>
-            <li class="nav__item">
-                <a href="all-lots.html">Разное</a>
-            </li>
+            <?php endforeach; ?>
         </ul>
     </nav>
     <form class="form form--add-lot container <?php if (count($errors)){ echo 'form--invalid';}; ?>" action="add.php" method="post" enctype="multipart/form-data">
@@ -53,7 +40,7 @@
             <textarea id="message" name="message" placeholder="Напишите описание лота"><?php if(isset($values['message'])){ echo $values['message'];}; ?></textarea>
             <span class="form__error"><?php if(isset($errors['message'])){ echo $errors['message'];}; ?></span>
         </div>
-        <div class="form__item form__item--file"> <!-- form__item--uploaded -->
+        <div class="form__item form__item--file <?php if(isset($errors['img'])){ echo 'form__item--invalid';}; ?>"> <!-- form__item--uploaded -->
             <label>Изображение</label>
             <div class="preview">
                 <button class="preview__remove" type="button">x</button>
@@ -67,6 +54,7 @@
                     <span>+ Добавить</span>
                 </label>
             </div>
+            <span class="form__error"><?php if(isset($errors['img'])){ echo $errors['img'];}; ?></span>
         </div>
         <div class="form__container-three">
             <div class="form__item form__item--small <?php if(isset($errors['lot-rate'])){ echo 'form__item--invalid';}; ?>">

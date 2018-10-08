@@ -20,55 +20,65 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($_POST['lot-name'])) {
         $errors['lot-name'] = 'Введите наименование лота';
     } else {
-        $values['lot-name'] = $_POST['lot-name'];
+        $values['lot-name'] = filter($_POST['lot-name']);
     }
 
     // Проверяем на пустоту строки
     if (empty($_POST['message'])) {
         $errors['message'] = 'Напишите описание лота';
     } else {
-        $values['message'] = $_POST['message'];
+        $values['message'] = filter($_POST['message']);
     }
 
     // Проверяем на пустоту строки и число
     if (empty($_POST['lot-rate'])) {
         $errors['lot-rate'] = 'Введите начальную цену';
-    } else if (is_numeric($_POST['lot-rate'])) {
-        $values['lot-rate'] = $_POST['lot-rate'];
+    } else if (is_numeric($_POST['lot-rate']) && $_POST['lot-rate'] > 0) {
+        $values['lot-rate'] = filter($_POST['lot-rate']);
     } else {
         $errors['lot-rate'] = 'Цена должна быть числом';
-        $values['lot-rate'] = $_POST['lot-rate'];
+        $values['lot-rate'] = filter($_POST['lot-rate']);
     }
 
     // Проверяем на пустоту строки и число
     if (empty($_POST['lot-step'])) {
         $errors['lot-step'] = 'Введите шаг ставки';
-    } else if (is_numeric($_POST['lot-step'])) {
-        $values['lot-step'] = $_POST['lot-step'];
+    } else if (is_numeric($_POST['lot-step']) && $_POST['lot-step'] > 0) {
+        $values['lot-step'] = filter($_POST['lot-step']);
     } else {
         $errors['lot-step'] = 'Шаг должен быть числом';
-        $values['lot-step'] = $_POST['lot-step'];
+        $values['lot-step'] = filter($_POST['lot-step']);
     }
 
     // Проверяем на пустоту строки
     if (empty($_POST['lot-date'])) {
         $errors['lot-date'] = 'Введите дату завершения торгов';
     } else {
-        $values['lot-date'] = $_POST['lot-date'];
+        $values['lot-date'] = filter($_POST['lot-date']);
     }
 
     // Проверяем на пустоту строки
     if ($_POST['category'] == 'Выберите категорию') {
         $errors['category'] = 'Вы не выбрали категорию';
     } else {
-        $values['category'] = $_POST['category'];
+        $values['category'] = filter($_POST['category']);
     }
 
     // Проверяем картинку
-    if (isset($_FILES['img'])) {
+    if (strlen($_FILES['img']['name'])) {
         $file_name = $_FILES['img']['name'];
         $file_path = __DIR__ . '/img/';
         $file_url = '/img/' . $file_name;
+
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $tmp_name = $_FILES['img']['tmp_name'];
+        $file_type = finfo_file($finfo, $tmp_name);
+
+        if ($file_type !== 'image/jpeg' && $file_type !== 'image/png') {
+            $errors['img'] = 'Выберите изображение формата jpeg или png';
+        }
+    } else {
+        $errors['img'] = 'Вы не выбрали изображение';
     }
 
     if (!count($errors)) {
@@ -89,8 +99,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-
-
 
 $page_content = include_template('add.php', [
     'categories' => $categories,
