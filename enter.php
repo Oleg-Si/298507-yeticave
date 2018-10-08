@@ -1,13 +1,11 @@
 <?php
-$is_auth = rand(0, 1);
-
-$user_avatar = 'img/user.jpg';
+session_start();
+$user_name = $_SESSION['user']['user_name'];
+$user_avatar = $_SESSION['user']['user_avatar'];
 
 require_once('functions.php');
 require_once('connect.php');
 require_once('mysql_helper.php');
-
-session_start();
 
 $get_categories = 'SELECT category_name FROM categories';
 $categories = get_data($connect, $get_categories);
@@ -35,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($user) {
         if (password_verify($_POST['password'], $user['user_password'])) {
-            $_SESSION['user'] = $user['id'];
+            $_SESSION['user'] = $user;
             header("Location: /");
             exit();
         } else {

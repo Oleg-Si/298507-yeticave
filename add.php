@@ -1,8 +1,12 @@
 <?php
-$is_auth = rand(0, 1);
+session_start();
+$user_name = $_SESSION['user']['user_name'];
+$user_avatar = $_SESSION['user']['user_avatar'];
 
-$user_name = 'Олег';
-$user_avatar = 'img/user.jpg';
+if (!$_SESSION['user']) {
+    header("HTTP/1.0 403 Forbidden");
+    exit();
+}
 
 require_once('functions.php');
 require_once('connect.php');
@@ -110,7 +114,6 @@ $layout_content = include_template('layout.php', [
     'page_content' => $page_content,
     'categories' => $categories,
     'page_title' => 'Добавить лот',
-    'is_auth' => $is_auth,
     'user_name' => $user_name,
     'user_avatar' => $user_avatar
 ]);
