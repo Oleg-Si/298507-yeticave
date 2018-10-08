@@ -23,12 +23,13 @@
 
                     <nav class="user-menu">
 
-                        <?php if ($is_auth): ?>
+                        <?php if (isset($_SESSION['user'])): ?>
                         <div class="user-menu__image">
-                            <img src="img/user.jpg" width="40" height="40" alt="Пользователь">
+                            <img src="<?php echo $user_avatar; ?>" width="40" height="40" alt="Пользователь">
                         </div>
                         <div class="user-menu__logged">
                             <p><?php echo $user_name; ?></p>
+                            <a href="logout.php">Выйти</a>
                         </div>
                         <?php else: ?>
                         <ul class="user-menu__list">

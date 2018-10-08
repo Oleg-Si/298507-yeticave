@@ -1,13 +1,12 @@
 <?php
-$is_auth = rand(0, 1);
-
-$user_name = 'Олег';
-$user_avatar = 'img/user.jpg';
+session_start();
+$user_name = $_SESSION['user']['user_name'];
+$user_avatar = $_SESSION['user']['user_avatar'];
 
 require_once('functions.php');
 require_once('connect.php');
 
-$get_categories = 'SELECT category_name FROM categories';
+$get_categories = 'SELECT * FROM categories';
 $get_catalog = 'SELECT * FROM lots';
 
 $categories = get_data($connect, $get_categories);
