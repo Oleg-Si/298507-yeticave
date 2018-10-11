@@ -75,11 +75,11 @@ $bets = get_data($connect, $query_bets);
 // переводим дату ставок в "человеческую"
 foreach ($bets as $key => $bet) {
     $date_create = strtotime($bet['date_craete']);
-    $a = time() - $date_create;
+    $time_unix = time() - $date_create;
 
-    $is_day = floor($a / 86400);
-    $is_hour = floor($a / 3600);
-    $is_minute = floor($a / 60);
+    $is_day = floor($time_unix / 86400);
+    $is_hour = floor($time_unix / 3600);
+    $is_minute = floor($time_unix / 60);
 
     if($is_day > 0) {
         $bets[$key]['date_craete'] = $is_day . ' дней назад';
@@ -88,19 +88,19 @@ foreach ($bets as $key => $bet) {
     } else if ($is_minute <= 59 && $is_minute >= 1) {
         $bets[$key]['date_craete'] = $is_minute . ' минут назад';
     } else {
-        $bets[$key]['date_craete'] = $a . ' секунд назад';
+        $bets[$key]['date_craete'] = $time_unix . ' секунд назад';
     }
 }
 
 // проверяем форму и записываем в базу ставку
-if (isset($_SESSION['user']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+if (isset($_SESSION['user']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $cost = filter($_POST['cost']);
     $safe_cost = mysqli_real_escape_string($connect, $cost);
     $errors = [];
 
     if (!is_numeric($cost) || empty($cost) || $cost <= 0) {
         $errors['price'] = 'Укажите цену';
-    } else if ($cost != round($cost)) {
+    } else if ($cost !== round($cost)) {
         $errors['price'] = 'Введите целое число';
     } else if ($cost < $min_price) {
         $errors['price'] = 'Меньше минимальной ставки';

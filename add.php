@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Проверяем на пустоту строки
-    if ($_POST['category'] == 'Выберите категорию') {
+    if ($_POST['category'] === 'Выберите категорию') {
         $errors['category'] = 'Вы не выбрали категорию';
     } else {
         $values['category'] = filter($_POST['category']);
