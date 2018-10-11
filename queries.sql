@@ -13,21 +13,21 @@ INSERT INTO users(user_email, user_name, user_password, user_lot, user_bet) VALU
 ('warrior07@mail.ru', 'Руслан', '$2y$10$2OxpEH7narYpkOT1H5cApezuzh10tZEEQ2axgFOaKW.55LxIJBgWW', '3', '3');
 
 /* Добавляем объявления*/
-INSERT INTO lots(date_craete, title, description, image, price, user_id, category_id) VALUES
-('2018.09.19','2014 Rossignol District Snowboard', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae earum architecto repudiandae distinctio sapiente ad inventore cupiditate consequuntur est iste?', 'img/lot-1.jpg', '10999', '1', '1'),
-('2018.09.20','DC Ply Mens 2016/2017 Snowboard', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae earum architecto repudiandae distinctio sapiente ad inventore cupiditate consequuntur est iste?', 'img/lot-2.jpg', '159999', '1', '1'),
-('2018.09.21','Крепления Union Contact Pro 2015 года размер L/XL', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae earum architecto repudiandae distinctio sapiente ad inventore cupiditate consequuntur est iste?', 'img/lot-3.jpg', '8000', '3', '2'),
-('2018.09.22','Ботинки для сноуборда DC Mutiny Charocal', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae earum architecto repudiandae distinctio sapiente ad inventore cupiditate consequuntur est iste?', 'img/lot-4.jpg', '10999', '1', '3'),
-('2018.09.23','Куртка для сноуборда DC Mutiny Charocal', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae earum architecto repudiandae distinctio sapiente ad inventore cupiditate consequuntur est iste?', 'img/lot-5.jpg', '7500', '2', '4'),
-('2018.09.24','Маска Oakley Canopy', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae earum architecto repudiandae distinctio sapiente ad inventore cupiditate consequuntur est iste?', 'img/lot-6.jpg', '5400', '3', '6');
+INSERT INTO lots(date_craete, title, description, image, price, date_closed, step, bets_count, price_now,  user_id, category_id) VALUES
+('2018.09.19','2014 Rossignol District Snowboard', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae earum architecto repudiandae distinctio sapiente ad inventore cupiditate consequuntur est iste?', 'img/lot-1.jpg', '10999', '2018.09.25', '1000', '0', '10999', '1', '1'),
+('2018.09.20','DC Ply Mens 2016/2017 Snowboard', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae earum architecto repudiandae distinctio sapiente ad inventore cupiditate consequuntur est iste?', 'img/lot-2.jpg', '159999', '2018.10.20', '1000', '0', '159999', '1', '1'),
+('2018.09.21','Крепления Union Contact Pro 2015 года размер L/XL', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae earum architecto repudiandae distinctio sapiente ad inventore cupiditate consequuntur est iste?', 'img/lot-3.jpg', '8000', '2018.10.20', '1000', '0', '8000', '3', '2'),
+('2018.09.22','Ботинки для сноуборда DC Mutiny Charocal', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae earum architecto repudiandae distinctio sapiente ad inventore cupiditate consequuntur est iste?', 'img/lot-4.jpg', '10999',  '2018.10.20', '1000', '0', '10999', '1', '3'),
+('2018.09.23','Куртка для сноуборда DC Mutiny Charocal', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae earum architecto repudiandae distinctio sapiente ad inventore cupiditate consequuntur est iste?', 'img/lot-5.jpg', '7500', '2018.10.20', '1000', '0', '7500', '2', '4'),
+('2018.09.24','Маска Oakley Canopy', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae earum architecto repudiandae distinctio sapiente ad inventore cupiditate consequuntur est iste?', 'img/lot-6.jpg', '5400', '2018.10.20', '5000', '0', '5400', '3', '6');
 
 /* Добавляем ставки*/
-INSERT INTO bets(price, user_id, lot_id) VALUES
-('11500', '1', '1'),
-('170500', '3', '2'),
-('9000', '2', '3'),
-('11500', '2', '4'),
-('8500', '1', '5');
+INSERT INTO bets(date_craete, price, user_id, lot_id) VALUES
+('2018.09.25', '10999', '1', '1'),
+('2018.09.25', '159999', '3', '2'),
+('2018.09.25', '8000', '2', '3'),
+('2018.09.25', '10999', '2', '4'),
+('2018.09.25', '7500', '1', '5');
 
 /*получить все категории*/
 SELECT * FROM categories;

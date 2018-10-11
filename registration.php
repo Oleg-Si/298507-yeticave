@@ -65,6 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($file_type !== 'image/jpeg' && $file_type !== 'image/png') {
             $errors['img'] = 'Выберите изображение формата jpeg или png';
         }
+    } else {
+        $file_url = '';
     }
 
     if (!count($errors)) {

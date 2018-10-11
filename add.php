@@ -54,9 +54,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $values['lot-step'] = filter($_POST['lot-step']);
     }
 
-    // Проверяем на пустоту строки
+    // Проверяем поле даты
     if (empty($_POST['lot-date'])) {
         $errors['lot-date'] = 'Введите дату завершения торгов';
+    } else if (strtotime($_POST['lot-date']) - time() < 43200) {
+        $errors['lot-date'] = 'Срок меньше 1 дня';
     } else {
         $values['lot-date'] = filter($_POST['lot-date']);
     }
@@ -91,9 +93,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $category_id_query = 'SELECT id FROM categories WHERE categories.category_name = "' . mysqli_real_escape_string($connect, $values['category']) . '"';
         $category_id = get_data($connect, $category_id_query);
 
-        $sql = 'INSERT INTO lots (date_craete, title, category_id, description, image, price, step, date_closed) VALUES (NOW(), ?, ?, ?, ?, ?, ?, ?)';
+        $sql = 'INSERT INTO lots (date_craete, title, description, image, price, date_closed, step, bets_count, price_now, user_id, category_id) VALUES (NOW(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
-        $stmt = db_get_prepare_stmt($connect, $sql, [$values['lot-name'], $category_id[0]['id'], $values['message'], $file_url, $values['lot-rate'], $values['lot-step'], $values['lot-date']]);
+        $stmt = db_get_prepare_stmt($connect, $sql, [$values['lot-name'], $values['message'], $file_url, $values['lot-rate'], $values['lot-date'], $values['lot-step'], 0, $values['lot-rate'], $_SESSION['user']['id'], $category_id[0]['id']]);
         $result = mysqli_stmt_execute($stmt);
 
         if ($result) {
