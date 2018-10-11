@@ -150,11 +150,3 @@ $layout_content = include_template('layout.php', [
 ]);
 
 echo $layout_content;
-//mysqli_query($connect, 'UPDATE lots SET price_now = 10999 WHERE id = 1');
-//mysqli_query($connect, 'UPDATE lots SET price_now = 159999 WHERE id = 2');
-//mysqli_query($connect, 'UPDATE lots SET price_now = 8000 WHERE id = 3');
-//mysqli_query($connect, 'UPDATE lots SET price_now = 10999 WHERE id = 4');
-//mysqli_query($connect, 'UPDATE lots SET price_now = 7500 WHERE id = 5');
-//mysqli_query($connect, 'UPDATE lots SET price_now = 5400 WHERE id = 6');
-//
-//mysqli_query($connect, 'UPDATE lots SET price_now = 51000 WHERE id = 16');
