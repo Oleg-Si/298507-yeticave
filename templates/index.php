@@ -32,7 +32,7 @@
                             <span class="lot__cost"><?php echo format_price(filter($lot['price'])); ?></span>
                         </div>
                         <div class="lot__timer timer">
-                            <?php echo get_time(); ?>
+                            <?php echo $lot['date_closed']; ?>
                         </div>
                     </div>
                 </div>

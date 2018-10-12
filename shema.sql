@@ -50,6 +50,4 @@ CREATE TABLE users (
 
 CREATE UNIQUE INDEX emails ON users(user_email);
 CREATE INDEX names ON users(user_name);
-CREATE UNIQUE INDEX contacts ON users(user_contact);
 CREATE UNIQUE INDEX categories ON categories(category_name);
-CREATE INDEX lot_titles ON lots(title);

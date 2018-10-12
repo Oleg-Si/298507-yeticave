@@ -17,7 +17,7 @@
         </div>
         <div class="form__item form__item--last <?php if(isset($errors['password']) || isset($errors['wrong_password'])){ echo 'form__item--invalid';}; ?>">
             <label for="password">Пароль*</label>
-            <input id="password" type="text" name="password" placeholder="Введите пароль">
+            <input id="password" type="password" name="password" placeholder="Введите пароль">
             <span class="form__error"><?php if(isset($errors['password'])){ echo $errors['password'];} elseif (isset($errors['wrong_password'])) {echo $errors['wrong_password'];}; ?></span>
         </div>
         <button type="submit" class="button">Войти</button>

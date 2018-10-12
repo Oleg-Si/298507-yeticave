@@ -36,16 +36,6 @@ function filter($str) {
     return $text;
 }
 
-function get_time() {
-
-    $time_now = time();
-    $tomorrow_midnight = mktime(0, 0, 0, date('n'), date('j') + 1);
-    $timer = $tomorrow_midnight - $time_now;
-
-    $result = date('H:i:s', mktime(0, 0, 0) + $timer);
-
-    return $result;
-}
 
 function get_data($connect, $query) {
     $result = mysqli_query($connect, $query);
