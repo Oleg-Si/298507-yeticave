@@ -11,7 +11,7 @@ $get_categories = 'SELECT category_name FROM categories';
 
 $categories = get_data($connect, $get_categories);
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
     $values = [];
 
@@ -58,9 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $file_path = __DIR__ . '/img/avatars/';
         $file_url = '/img/avatars/' . $file_name;
 
-        $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $tmp_name = $_FILES['img']['tmp_name'];
-        $file_type = finfo_file($finfo, $tmp_name);
+        $file_type = mime_content_type($tmp_name);
 
         if ($file_type !== 'image/jpeg' && $file_type !== 'image/png') {
             $errors['img'] = 'Выберите изображение формата jpeg или png';

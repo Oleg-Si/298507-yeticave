@@ -100,7 +100,7 @@ if (isset($_SESSION['user']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!is_numeric($cost) || empty($cost) || $cost <= 0) {
         $errors['price'] = 'Укажите цену';
-    } else if ($cost !== round($cost)) {
+    } else if ($cost != round($cost)) {
         $errors['price'] = 'Введите целое число';
     } else if ($cost < $min_price) {
         $errors['price'] = 'Меньше минимальной ставки';
