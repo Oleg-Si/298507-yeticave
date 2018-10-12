@@ -32,10 +32,10 @@
                     <div class="lot-item__cost-state">
                         <div class="lot-item__rate">
                             <span class="lot-item__amount">Текущая цена</span>
-                            <span class="lot-item__cost"><?php echo $price; ?></span>
+                            <span class="lot-item__cost"><?php echo format_price($price); ?></span>
                         </div>
                         <div class="lot-item__min-cost">
-                            Мин. ставка <span><?php echo $min_price; ?></span>
+                            Мин. ставка <span><?php echo format_price($min_price); ?></span>
                         </div>
                     </div>
                     <form class="lot-item__form <?php if (count($errors)){ echo 'form--invalid';}; ?>" action="" method="post">
@@ -59,7 +59,7 @@
 
                         <tr class="history__item">
                             <td class="history__name"><?php echo $bet['user_name']; ?></td>
-                            <td class="history__price"><?php echo $bet['price']; ?></td>
+                            <td class="history__price"><?php echo format_price($bet['price']); ?></td>
                             <td class="history__time"><?php echo $bet['date_craete']; ?></td>
                         </tr>
 
