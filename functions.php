@@ -36,6 +36,20 @@ function filter($str) {
     return $text;
 }
 
+function add_timer($array) {
+    foreach ($array as $key => $lot) {
+        $day = floor((strtotime($lot['date_closed']) - time()) / 86400);
+
+        $time_hour = (strtotime($lot['date_closed']) - time()) % 86400;
+        $hour = floor($time_hour / 3600);
+
+        $time_minute = $time_hour % 3600;
+        $minute = floor($time_minute / 60);
+
+        $array[$key]['date_closed'] = $day . 'д:' . $hour . 'ч:' . $minute . 'м';
+    }
+    return $array;
+}
 
 function get_data($connect, $query) {
     $result = mysqli_query($connect, $query);
