@@ -23,8 +23,6 @@ if ($res && mysqli_num_rows($res)) {
         $recipients[] = $val['user_email'];
     }
 
-    var_dump(mysqli_num_rows($res));
-
     $message = new Swift_Message();
     $message->setSubject("Поздравляем с победой");
     $message->setFrom(['keks@phpdemo.ru' => 'YetiCave']);
@@ -41,5 +39,4 @@ if ($res && mysqli_num_rows($res)) {
     else {
         print("Не удалось отправить рассылку: " . $logger->dump());
     }
-
 }
