@@ -28,9 +28,8 @@
                             <img src="<?php echo $user_avatar; ?>" width="40" height="40" alt="Пользователь">
                         </div>
                         <div class="user-menu__logged">
-                            <p><?php echo $user_name; ?></p>
+                            <a href="my_bets.php"><p><?php echo $user_name; ?></p></a>
                             <a href="logout.php">Выйти</a>
-                            <a href="my_bets.php">Мои ставки</a>
                         </div>
                         <?php else: ?>
                         <ul class="user-menu__list">
