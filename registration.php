@@ -7,7 +7,7 @@ require_once('functions.php');
 require_once('connect.php');
 require_once('mysql_helper.php');
 
-$get_categories = 'SELECT category_name FROM categories';
+$get_categories = 'SELECT * FROM categories';
 
 $categories = get_data($connect, $get_categories);
 

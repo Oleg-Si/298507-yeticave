@@ -30,6 +30,7 @@
                         <div class="user-menu__logged">
                             <p><?php echo $user_name; ?></p>
                             <a href="logout.php">Выйти</a>
+                            <a href="my_bets.php">Мои ставки</a>
                         </div>
                         <?php else: ?>
                         <ul class="user-menu__list">
@@ -56,7 +57,7 @@
 
                     <?php foreach ($categories as $category): ?>
                     <li class="nav__item">
-                        <a href="pages/all-lots.html"><?php echo $category['category_name']; ?></a>
+                        <a href="category_items.php?id=<?php echo $category['id']; ?>"><?php echo $category['category_name']; ?></a>
                     </li>
                     <?php endforeach; ?>
 
