@@ -20,23 +20,21 @@ if ($res && mysqli_num_rows($res)) {
     $data = mysqli_fetch_all($res, MYSQLI_ASSOC);
 
     foreach ($data as $val) {
-        $recipients[] = $val['user_email'];
-    }
+        $message = new Swift_Message();
+        $message->setSubject("Поздравляем с победой");
+        $message->setFrom(['keks@phpdemo.ru' => 'YetiCave']);
+        $message->setBcc($val['user_email']);
 
-    $message = new Swift_Message();
-    $message->setSubject("Поздравляем с победой");
-    $message->setFrom(['keks@phpdemo.ru' => 'YetiCave']);
-    $message->setBcc($recipients);
+        $msg_content = include_template('email.php', ['val' => $val]);
+        $message->setBody($msg_content, 'text/html');
 
-    $msg_content = include_template('email.php', ['data' => $data]);
-    $message->setBody($msg_content, 'text/html');
+        $result = $mailer->send($message);
 
-    $result = $mailer->send($message);
-
-    if ($result) {
-        print("Рассылка успешно отправлена");
-    }
-    else {
-        print("Не удалось отправить рассылку: " . $logger->dump());
+        if ($result) {
+            print("Рассылка успешно отправлена");
+        }
+        else {
+            print("Не удалось отправить рассылку: " . $logger->dump());
+        }
     }
 }

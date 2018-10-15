@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * Подключает шаблон
+ *
+ * @param $name string имя файла
+ * @param $data array массив с данными
+ *
+ * @return содержимое текущего буфера
+ */
 function include_template($name, $data) {
     $name = 'templates/' . $name;
     $result = '';
@@ -10,7 +17,7 @@ function include_template($name, $data) {
 
     ob_start();
     extract($data);
-    require_once $name;
+    require $name;
 
     $result = ob_get_clean();
 
