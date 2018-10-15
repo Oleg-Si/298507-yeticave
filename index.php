@@ -5,6 +5,7 @@ $user_avatar = $_SESSION['user']['user_avatar'];
 
 require_once('functions.php');
 require_once('connect.php');
+require_once('getwinner.php');
 
 $get_categories = 'SELECT * FROM categories';
 $get_catalog = 'SELECT * FROM lots';

@@ -16,7 +16,13 @@ function include_template($name, $data) {
 
     return $result;
 }
-
+/**
+ * Форматирует цену с разбивкой по тыс. с добавлением знака рубля
+ *
+ * @param $price string Цена
+ *
+ * @return string Отформатированная цена
+ */
 function format_price($price) {
     $new_price = ceil($price);
 
@@ -29,13 +35,25 @@ function format_price($price) {
 
     return $new_price;
 }
-
+/**
+ * Убирает html теги
+ *
+ * @param $str string Данные из форм и т.д.
+ *
+ * @return string Отформатированные данные
+ */
 function filter($str) {
     $text = htmlspecialchars($str);
 
     return $text;
 }
-
+/**
+ * Форматирует дату в таймер в формате дни:часы:минуты
+ *
+ * @param array $array Массив с данными
+ *
+ * @return array Отформатированный массив с таймером на месте дат
+ */
 function add_timer($array) {
     foreach ($array as $key => $lot) {
         $day = floor((strtotime($lot['date_closed']) - time()) / 86400);
@@ -50,7 +68,14 @@ function add_timer($array) {
     }
     return $array;
 }
-
+/**
+ * Получает данные из БД и преобразует в массив в массив
+ *
+ * @param $connect mysqli Ресурс соединения
+ * @param $query string SQL запрос
+ *
+ * @return array Массив с данными из запроса
+ */
 function get_data($connect, $query) {
     $result = mysqli_query($connect, $query);
     $data = mysqli_fetch_all($result, MYSQLI_ASSOC);

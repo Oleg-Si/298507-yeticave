@@ -6,7 +6,7 @@
 
             <?php foreach ($categories as $category): ?>
             <li class="promo__item promo__item--boards">
-                <a class="promo__link" href="pages/all-lots.html"><?php echo $category['category_name']; ?></a>
+                <a href="category_items.php?id=<?php echo $category['id']; ?>" class="promo__link"><?php echo $category['category_name']; ?></a>
             </li>
             <?php endforeach; ?>
 
@@ -19,6 +19,7 @@
         <ul class="lots__list">
 
             <?php foreach ($lots as $lot): ?>
+
             <li class="lots__item lot">
                 <div class="lot__image">
                     <img src="<?php echo $lot['image']; ?>" width="350" height="260" alt="<?php echo $lot['title']; ?>">
@@ -37,7 +38,9 @@
                     </div>
                 </div>
             </li>
+
             <?php endforeach; ?>
+
         </ul>
     </section>
 </main>

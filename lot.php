@@ -121,7 +121,7 @@ if (isset($_SESSION['user']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$get_categories = 'SELECT category_name FROM categories';
+$get_categories = 'SELECT * FROM categories';
 $get_lot = 'SELECT * FROM lots JOIN categories ON lots.category_id = categories.id WHERE lots.id = ' . $safe_lot_id . '';
 
 $categories = get_data($connect, $get_categories);

@@ -12,7 +12,7 @@ $get_catalog = 'SELECT * FROM lots';
 $categories = get_data($connect, $get_categories);
 
 // поиск
-$search = filter($_GET['search']) ?? '';
+$search = filter(trim($_GET['search'])) ?? '';
 $safe_search = mysqli_real_escape_string($connect, $search);
 
 if ($search  && $search !== '') {
@@ -20,8 +20,9 @@ if ($search  && $search !== '') {
     $cur_page = $_GET['page'] ?? 1;
     $page_items = 9;
     $offset = ($cur_page - 1) * $page_items;
+    $pagination_query = 'search.php?search=' . $search . '';
 
-    $query_lots = 'SELECT * FROM lots JOIN categories ON lots.user_id = categories.id WHERE MATCH(title, description) AGAINST("' . $safe_search . '") ORDER BY date_craete DESC LIMIT ' . $page_items . ' OFFSET ' . $offset; '';
+    $query_lots = 'SELECT * FROM lots JOIN categories ON lots.user_id = categories.id WHERE MATCH(title, description) AGAINST("' . $safe_search . '") ORDER BY date_craete DESC LIMIT ' . $page_items . ' OFFSET ' . $offset . '';
 
     $lots = get_data($connect, $query_lots);
 
@@ -47,7 +48,7 @@ $pagination = include_template('pagination.php', [
     'pages_count' => $pages_count,
     'pages' => $pages,
     'cur_page' => $cur_page,
-    'search' => $search,
+    'pagination_query' => $pagination_query
 ]);
 
 $page_content = include_template('search.php', [
