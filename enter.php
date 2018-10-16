@@ -10,7 +10,7 @@ require_once('mysql_helper.php');
 $get_categories = 'SELECT * FROM categories';
 $categories = get_data($connect, $get_categories);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ((string)$_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
     $values = [];
 

@@ -14,13 +14,13 @@
 
             <?php foreach ($lots as $lot): ?>
 
-            <tr class="rates__item <?php if ($_SESSION['user']['id'] == $lot['user_win']) { echo 'rates__item--win';} else if ($lot['date_closed'] < 0) { echo 'rates__item--end';} ?>">
+            <tr class="rates__item <?php if ((string)$_SESSION['user']['id'] === (string)$lot['user_win']) { echo 'rates__item--win';} else if ((int)$lot['date_closed'] < 0) { echo 'rates__item--end';} ?>">
                 <td class="rates__info">
                     <div class="rates__img">
                         <img src="<?php echo $lot['image']; ?>" width="54" height="40" alt="Сноуборд">
                     </div>
                     <h3 class="rates__title"><a href="lot.php?id=<?php echo $lot['lot_id']; ?>"><?php echo $lot['title']; ?></a></h3>
-                    <?php if ($_SESSION['user']['id'] == $lot['user_win']) { ?>
+                    <?php if ((int)$_SESSION['user']['id'] === (int)$lot['user_win']) { ?>
                         <p><?php echo $lot['user_contact']; ?></p>
                     <?php } ?>
                 </td>
@@ -28,9 +28,9 @@
                     <?php echo $lot['category_name']; ?>
                 </td>
                 <td class="rates__timer">
-                    <?php if ($_SESSION['user']['id'] == $lot['user_win']) { ?>
+                    <?php if ((int)$_SESSION['user']['id'] === (int)$lot['user_win']) { ?>
                         <div class="timer timer--win">Ставка выиграла</div>
-                    <?php } else if ($lot['date_closed'] < 0) { ?>
+                    <?php } else if ((int)$lot['date_closed'] < 0) { ?>
                         <div class="timer timer--end">Торги окончены</div>
                     <?php } else { ?>
                         <div class="timer timer--finishing"><?php echo $lot['date_closed']; ?></div>

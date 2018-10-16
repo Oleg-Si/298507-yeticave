@@ -15,14 +15,14 @@ $categories = get_data($connect, $get_categories);
 $search = filter(trim($_GET['search'])) ?? '';
 $safe_search = mysqli_real_escape_string($connect, $search);
 
-if ($search  && $search !== '') {
+if ((string)$search && (string)$search !== '') {
     // пагинация
     $cur_page = $_GET['page'] ?? 1;
     $page_items = 9;
     $offset = ($cur_page - 1) * $page_items;
     $pagination_query = 'search.php?search=' . $search . '';
 
-    $query_lots = 'SELECT * FROM lots JOIN categories ON lots.user_id = categories.id WHERE MATCH(title, description) AGAINST("' . $safe_search . '") ORDER BY date_craete DESC LIMIT ' . $page_items . ' OFFSET ' . $offset . '';
+    $query_lots = 'SELECT *, lots.id FROM lots JOIN categories ON lots.category_id = categories.id WHERE MATCH(title, description) AGAINST("' . $safe_search . '") ORDER BY date_craete DESC LIMIT ' . $page_items . ' OFFSET ' . $offset . '';
 
     $lots = get_data($connect, $query_lots);
 
@@ -40,7 +40,7 @@ if ($search  && $search !== '') {
         $not_result = '<p>Ничего не найдено по вашему запросу</p>';
     }
 }
-if ($search === '') {
+if ((string)$search === '') {
     $not_result = '<p>Вы не ввели ни одного символа</p>';
 }
 

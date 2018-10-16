@@ -29,7 +29,7 @@
                     <h3 class="lot__title"><a class="text-link" href="lot.php?id=<?php echo $lot['id']?>"><?php echo filter($lot['title']); ?></a></h3>
                     <div class="lot__state">
                         <div class="lot__rate">
-                            <span class="lot__amount"><?php if ($lot['bets_count'] > 0) {echo 'ставок - ' . $lot['bets_count'];} else {echo 'Стартовая цена';} ?></span>
+                            <span class="lot__amount"><?php if ((int)$lot['bets_count'] > 0) {echo 'ставок - ' . $lot['bets_count'];} else {echo 'Стартовая цена';} ?></span>
                             <span class="lot__cost"><?php echo format_price(filter($lot['price'])); ?></span>
                         </div>
                         <div class="lot__timer timer">

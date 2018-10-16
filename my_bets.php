@@ -21,11 +21,11 @@ foreach ($lots as $key => $lot) {
     $is_hour = floor($time_unix / 3600);
     $is_minute = floor($time_unix / 60);
 
-    if($is_day > 0) {
+    if((int)$is_day > 0) {
         $lots[$key]['date_craete'] = $is_day . ' дней назад';
-    } else if ($is_hour <= 23 && $is_hour >= 1) {
+    } else if ((int)$is_hour <= 23 && (int)$is_hour >= 1) {
         $lots[$key]['date_craete'] = $is_hour . ' часов назад';
-    } else if ($is_minute <= 59 && $is_minute >= 1) {
+    } else if ((int)$is_minute <= 59 && (int)$is_minute >= 1) {
         $lots[$key]['date_craete'] = $is_minute . ' минут назад';
     } else {
         $lots[$key]['date_craete'] = $time_unix . ' секунд назад';

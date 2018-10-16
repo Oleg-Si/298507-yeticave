@@ -11,7 +11,7 @@ $get_categories = 'SELECT * FROM categories';
 
 $categories = get_data($connect, $get_categories);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ((string)$_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
     $values = [];
 
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $get_email = 'SELECT id FROM users WHERE user_email = "' . $safe_email . '"';
     $email = mysqli_query($connect, $get_email);
 
-    if (mysqli_num_rows($email) > 0) {
+    if ((int)mysqli_num_rows($email) > 0) {
         $errors['user'] = 'Пользователь с этим email уже зарегистрирован';
     }
 
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $tmp_name = $_FILES['img']['tmp_name'];
         $file_type = mime_content_type($tmp_name);
 
-        if ($file_type !== 'image/jpeg' && $file_type !== 'image/png') {
+        if ((string)$file_type !== 'image/jpeg' && (string)$file_type !== 'image/png') {
             $errors['img'] = 'Выберите изображение формата jpeg или png';
         }
     } else {

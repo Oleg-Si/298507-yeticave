@@ -16,7 +16,7 @@ $get_categories = 'SELECT * FROM categories';
 
 $categories = get_data($connect, $get_categories);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ((string)$_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
     $values = [];
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Проверяем на пустоту строки и число
     if (empty($_POST['lot-rate'])) {
         $errors['lot-rate'] = 'Введите начальную цену';
-    } else if (is_numeric($_POST['lot-rate']) && $_POST['lot-rate'] > 0) {
+    } else if (is_numeric($_POST['lot-rate']) && (int)$_POST['lot-rate'] > 0) {
         $values['lot-rate'] = filter($_POST['lot-rate']);
     } else {
         $errors['lot-rate'] = 'Цена должна быть числом';
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Проверяем на пустоту строки и число
     if (empty($_POST['lot-step'])) {
         $errors['lot-step'] = 'Введите шаг ставки';
-    } else if (is_numeric($_POST['lot-step']) && $_POST['lot-step'] > 0) {
+    } else if (is_numeric($_POST['lot-step']) && (int)$_POST['lot-step'] > 0) {
         $values['lot-step'] = filter($_POST['lot-step']);
     } else {
         $errors['lot-step'] = 'Шаг должен быть числом';
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Проверяем на пустоту строки
-    if ($_POST['category'] === 'Выберите категорию') {
+    if ((string)$_POST['category'] === 'Выберите категорию') {
         $errors['category'] = 'Вы не выбрали категорию';
     } else {
         $values['category'] = filter($_POST['category']);
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $tmp_name = $_FILES['img']['tmp_name'];
         $file_type = mime_content_type($tmp_name);
 
-        if ($file_type !== 'image/jpeg' && $file_type !== 'image/png') {
+        if ((string)$file_type !== 'image/jpeg' && (string)$file_type !== 'image/png') {
             $errors['img'] = 'Выберите изображение формата jpeg или png';
         }
     } else {
